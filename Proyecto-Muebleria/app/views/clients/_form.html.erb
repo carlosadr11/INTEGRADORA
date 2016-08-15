@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="well">
+<%= form_for(@client) do |f| %>
+  <% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+
+      <div class="field">
+        <%= f.label :nombre %><br>
+        <%= f.text_field :nombre, :class => 'form-control', :placeholder => "Nombre" %>
+    </div>
+      </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :apellido %><br>
+        <%= f.text_field :apellido, :class => 'form-control', :placeholder => "Apellido" %>
+      </div>
+      </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :domicilio %><br>
+        <%= f.text_field :domicilio, :class => 'form-control', :placeholder => "Domicilio" %>
+      </div>
+      </div>
+    <div class="form-group">
+    <div class="field">
+        <%= f.label :telefono %><br>
+        <%= f.text_field :telefono, :class => 'form-control', :placeholder => "Teléfono" %>
+      </div>
+      </div>
+
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :email %><br>
+        <%= f.text_field :email, :class => 'form-control', :placeholder => "Email" %>
+      </div>
+      <div class="actions">
+        <%= f.submit @accion,  class: "btn btn-success" %>
+        <%= link_to 'Regresar', clients_path, class: "btn btn-warning" %>
+
+      </div>
+      </div>
+<% end %>
+</div>
+      </div>
+    </div>
+  </div>

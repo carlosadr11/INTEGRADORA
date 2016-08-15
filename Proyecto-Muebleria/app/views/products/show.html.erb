@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Lista de Productos</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+          <tr>
+            <td><%= @product.nombre %></td>
+            <td><%= @product.type.nombre%></td>
+            <td><%= @product.cantidad %></td>
+            <td><%= @product.precio %></td>
+
+          </tr>
+          </thead>
+
+        </table>
+
+
+          <%= link_to 'Editar', edit_product_path(@product),  class: "btn btn-info" %> |
+          <%= link_to 'Regresar', products_path, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>

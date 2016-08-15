@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <center>
+      <h1>Listado de Informacion de Ventas</h1>
+      </center>
+      <div class="table-responsive">
+        <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Venta</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @info_sales.each do |info_sale| %>
+      <tr>
+        <td><%= info_sale.sale_id %></td>
+        <td><%= info_sale.product.nombre %></td>
+        <td><%= info_sale.cantidad %></td>
+        <td><%= info_sale.product.precio %></td>
+        <td><%= link_to 'Mostrar', info_sale, class: "btn btn-info" %></td>
+        <td><%= link_to 'Editar', edit_info_sale_path(info_sale), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Eliminar', info_sale, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+      </div>
+
+<br>
+
+<%= link_to 'Nuevo Registro', new_info_sale_path, class: "btn btn-success" %>
+<%= link_to 'ventas', sales_path, class: "btn btn-info"  %>
+
+<br>
+<div class="pager">
+  <li class="previous disabled">
+    <%= will_paginate   @info_sales, renderer: BootstrapPagination::Rails, previous_label: h("Regresar"), :style => 'color:blue', next_label: h("Siguiente"), :style => 'color:blue' %>
+  </li>
+</div>
+</div>
+  </div>
+</div>
+</div>

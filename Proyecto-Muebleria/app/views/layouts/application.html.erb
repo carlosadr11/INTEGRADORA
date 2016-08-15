@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Muebleria</title>
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../../assets/imagesrelative/favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+  <%= favicon_link_tag 'favicon-M.ico' %>
+  <%= csrf_meta_tags %>
+
+
+
+</head>
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+  <!-- El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header ">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="<%= welcome_index_path %>">Muebleria <span  class="glyphicon glyphicon-home"></span></a>
+  </div>
+
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <% if user_signed_in? %>
+      <li><a href="<%= providers_path %>">Proveedores <span  class="glyphicon glyphicon-user"></span> </a></li>
+      <li><a href="<%= payments_path %>">Pagos <span  class="glyphicon glyphicon-usd"></span></a></li>
+      <li><a href="<%= types_path %>">Tipos <span  class="glyphicon glyphicon-th-large"></span></a></li>
+      <li><a href="<%= clients_path %>">Clientes <span  class="glyphicon glyphicon-eye-open"></span></a></li>
+      <li><a href="<%= products_path %>">Productos <span  class="glyphicon glyphicon-briefcase"></span></a></li>
+      <li><a href="<%= sales_path %>">Ventas <span  class="glyphicon glyphicon-shopping-cart"></span></a></li>
+<% end %>
+    </ul>
+
+    <p class="navbar-text pull-right">
+      <% if user_signed_in? %>
+
+          <%= link_to 'Editar Cuenta', edit_user_registration_path, :class => 'navbar-link - glyphicon glyphicon-edit' %> |
+          <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'navbar-link - glyphicon glyphicon-remove-circle'  %>
+      <% else %>
+          <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link -  glyphicon glyphicon-plus'  %> |
+          <%= link_to "Ingresar", new_user_session_path, :class => 'navbar-link - glyphicon glyphicon-off'  %>
+      <% end %>
+    </div>
+  </nav>
+      <p class="notice"><%= notice %></p>
+
+
+
+<%= yield %>
+
+</body>
+</html>

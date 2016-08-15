@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="well">
+<%= form_for(@sale) do |f| %>
+  <% if @sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+      <% @sale.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form-group">
+
+      <div class="field">
+        <%= f.label "Cliente" %><br>
+        <%= f.collection_select(:client_id, Client.order(:nombre),:id, :nombre , {prompt: "" }, :class => 'form-control', :title => "Selecciona una opcion", :required => "required") %>
+      </div>
+    </div>
+
+    <div class="form-group">
+
+          <div class="field">
+            <%= f.label :fecha %><br>
+            <%= f.date_select :fecha, :class => 'form-control' %>
+          </div>
+  </div>
+    <div class="form-group">
+      <div class="field">
+            <%= f.label "Total de pago" %><br>
+        <%= f.text_field :totalPago, :class => 'form-control',:placeholder => "Este campo se llenara automaticamente"  %>
+          </div>
+      </div>
+
+          <div class="actions">
+            <%= f.submit @accion, class: "btn btn-success" %>
+            <%= link_to 'Regresar', sales_path, class: "btn btn-warning" %>
+
+          </div>
+        <% end %>
+</div>
+
+      </div>
+    </div>
+  </div>

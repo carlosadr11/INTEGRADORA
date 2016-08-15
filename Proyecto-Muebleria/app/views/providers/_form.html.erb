@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="well">
+<%= form_for(@provider) do |f| %>
+  <% if @provider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@provider.errors.count, "error") %> prohibited this provider from being saved:</h2>
+
+      <ul>
+      <% @provider.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :nombre %><br>
+        <%= f.text_field :nombre, :class => 'form-control',  :placeholder => "Nombre" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :apellido %><br>
+        <%= f.text_field :apellido,:class => 'form-control',  :placeholder => "Apellido" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :domicilio %><br>
+        <%= f.text_field :domiciolio, :class => 'form-control',  :placeholder => "Domicilio" %>
+      </div>
+    </div>
+     <div class="form-group">
+      <div class="field">
+        <%= f.label :telefono %><br>
+        <%= f.text_field :telefono,:class => 'form-control',  :placeholder => "Teléfono" %>
+      </div>
+     </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :email %><br>
+        <%= f.text_field :email,:class => 'form-control',  :placeholder => "Email" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :total  %><br>
+        <%= f.number_field :totalProductos,:class => 'form-control',  :placeholder => "Total de Producto" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :fecha %><br>
+        <%= f.date_select :fecha,:class => 'form-control',  :placeholder => "Fecha" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :totalPago %><br>
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <%= f.number_field :totalPago,:class => 'form-control',  :placeholder => "Total de Pago" %>
+          <div class="input-group-addon">.00</div>
+        </div>
+      </div>
+    </div>
+      <div class="actions">
+        <%= f.submit @accion, class: "btn btn-info" %>
+        <%= link_to 'Regresar', providers_path, class: "btn btn-warning" %>
+
+      </div>
+    <% end %>
+</div>
+      </div>
+    </div>
+  </div>

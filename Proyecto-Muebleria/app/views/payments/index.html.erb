@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+       <center> <h1 class="top-aligned-row">Lista de Pagos</h1> </center>
+          <%= link_to "Excel", payments_path(format: "csv"), class:'btn btn-success' %> |
+            <%= link_to "PDF", payments_path(format: "pdf"), class: 'btn btn-danger' %>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Proveedor</th>
+                        <th>Abono</th>
+                        <th>Fecha</th>
+                        <th colspan="3"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @payments.each do |payment| %>
+                        <tr>
+                          <td><%= payment.provider.nombre %></td>
+                          <td><%= payment.abono %></td>
+                          <td><%= payment.fecha %></td>
+                          <td><%= link_to 'Mostrar', payment, class: "btn btn-info"  %></td>
+                          <td><%=  link_to 'Editar',edit_payment_path(payment), class: "btn btn-warning" %></td>
+                          <td><%= link_to 'Eliminar',payment, method: :delete, data: { confirm: '¿Esta seguro?' }, class: "btn btn-danger"  %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                   </table>
+                </div>
+                  <br>
+
+                  <%= link_to 'Nuevo Pago', new_payment_path, class: "btn btn-primary"  %>
+                  <br>
+                  <div class="pager">
+                    <li class="previous disabled">
+                     <%= will_paginate   @payments, renderer: BootstrapPagination::Rails, previous_label: h("Regresar"), :style => 'color:blue', next_label: h("Siguiente"), :style => 'color:blue' %>
+                    </li>
+                  </div>
+
+    </div>
+  </div>
+</div>

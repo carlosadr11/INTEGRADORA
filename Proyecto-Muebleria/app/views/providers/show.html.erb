@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Lista de Proveedores</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Domicilio</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Total de Productos</th>
+            <th>Fecha</th>
+            <th>Total a pagar</th>
+          </tr>
+          <tr>
+            <th><%= @provider.nombre %></th>
+            <th><%= @provider.apellido %></th>
+            <th><%= @provider.domiciolio %></th>
+            <th><%= @provider.telefono %></th>
+            <th><%= @provider.email %></th>
+            <th><%= @provider.totalProductos %></th>
+            <th><%= @provider.fecha %></th>
+            <th><%= @provider.totalPago %></th>
+          </tr>
+         </thead>
+         </table>
+        </div>
+            <%= link_to 'Editar', edit_provider_path(@provider), class: "btn btn-info" %> |
+            <%= link_to 'Regresar', providers_path, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>

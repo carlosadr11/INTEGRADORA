@@ -1,0 +1,70 @@
+<%= form_for(@info_sale) do |f| %>
+
+    <% if @info_sale.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@info_sale.errors.count, "error") %> prohibited this info_sale from being saved:</h2>
+
+          <ul>
+            <% @info_sale.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <table id="tblprod" class="table table-striped">
+      <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <%= f.label :sale_id %><br>
+            <%= f.collection_select(:sale_id, Sale.ultimos, :id, :id)  %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <div class="field">
+              <%= f.label :product_id %><br>
+              <%= f.collection_select(:product_id, Product.order(:nombre),:id, :nombre ,
+                                      {prompt: " " },
+                                      :required => "required",
+                                      :title => "Selecciona una opcion",
+                                      :class => "form-control",
+                                      #:onchange => 'document.getElementById("precio").innerText = this.options[this.selectedIndex].value;'
+                                      :onchange => 'change_product_select(this.options[this.selectedIndex].value);'
+                  )
+
+              %>
+
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <div class="field">
+              <%= f.label :cantidad %><br>
+              <%= f.number_field :cantidad, :class => "form-control", :placeholder => "Cantidad de productos" %>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <div class="field">
+              <%= f.label :precio %><br>
+              <%= f.collection_select(:product_id, Product.order(:nombre),:id, :precio ,
+                                      {prompt: " " },
+                                      :required => "required",
+                                      :title => "Selecciona una opcion",
+                                      :class => "form-control")
+              %>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="actions">
+      <%= f.submit @accion, class: "btn btn-success" %>
+    </div>
+<% end %>

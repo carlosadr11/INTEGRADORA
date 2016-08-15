@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <center><h1>Lista de Tipos de Productos</h1></center>
+<%= link_to "Excel", types_path(format: "csv"), class:'btn btn-success' %> |
+<%= link_to "PDF", types_path(format: "pdf"), class: 'btn btn-danger' %>
+
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @types.each do |type| %>
+      <tr>
+        <td><%= type.nombre %></td>
+        <td><%= type.descripcion %></td>
+        <td><%= link_to 'Mostrar', type, class: "btn btn-info" %></td>
+        <td><%= link_to 'Editar', edit_type_path(type), class: "btn btn-warning" %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'Nuevo Tipo de Producto', new_type_path, class: "btn btn-primary" %>
+      <br>
+      <div class="pager">
+        <li class="previous disabled">
+          <%= will_paginate   @types, renderer: BootstrapPagination::Rails, previous_label: h("Regresar"), :style => 'color:blue', next_label: h("Siguiente"), :style => 'color:blue' %>
+        </li>
+      </div>
+    </div>
+    </div>
+  </div>
